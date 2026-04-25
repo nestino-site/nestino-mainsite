@@ -6,6 +6,20 @@ import { isVillaPathLang } from "@/lib/villa-lang-segment";
 
 const CURINA_ASSET_COOKIE = "nestino_curina_assets";
 
+const DEFAULT_CURINA_PATH_PREFIXES = [
+  "/journal",
+  "/philosophy",
+  "/principles",
+  "/system",
+  "/impact",
+  "/viewing",
+  "/proposal",
+  "/private",
+  "/studio",
+  "/legal",
+  "/editorial",
+] as const;
+
 function normalizeOrigin(origin: string): string {
   return origin.endsWith("/") ? origin.slice(0, -1) : origin;
 }
@@ -36,9 +50,37 @@ function shouldServeFromCurina(request: NextRequest): boolean {
   return refererSuggestsCurina(request);
 }
 
+function curinaPathPrefixes(): string[] {
+  const raw = process.env.CURINA_PATH_PREFIXES?.trim();
+  if (!raw) return [...DEFAULT_CURINA_PATH_PREFIXES];
+  return raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((p) => (p.startsWith("/") ? p : `/${p}`));
+}
+
+function pathnameMatchesPrefixList(pathname: string, prefixes: string[]): boolean {
+  return prefixes.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+}
+
+function isHtmlNavigation(request: NextRequest): boolean {
+  return (
+    request.headers.get("sec-fetch-dest") === "document" &&
+    request.headers.get("sec-fetch-mode") === "navigate"
+  );
+}
+
 function rewriteToCurina(request: NextRequest, curinaOrigin: string): NextResponse {
   const target = new URL(request.nextUrl.pathname + request.nextUrl.search, curinaOrigin);
   return NextResponse.rewrite(target);
+}
+
+function redirectToCurinaMount(request: NextRequest): NextResponse {
+  const url = request.nextUrl.clone();
+  const suffix = url.pathname.startsWith("/") ? url.pathname : `/${url.pathname}`;
+  url.pathname = `/Curina${suffix === "/" ? "" : suffix}`;
+  return NextResponse.redirect(url, 308);
 }
 
 function localeFromPathname(pathname: string): Locale | null {
@@ -53,6 +95,7 @@ function localeFromPathname(pathname: string): Locale | null {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const curinaOrigin = curinaOriginFromEnv();
+  const curinaPrefixes = curinaPathPrefixes();
 
   if (pathname.startsWith("/images")) {
     return NextResponse.next();
@@ -87,6 +130,17 @@ export function middleware(request: NextRequest) {
       return rewriteToCurina(request, curinaOrigin);
     }
     if (pathname === "/favicon.ico") {
+      return rewriteToCurina(request, curinaOrigin);
+    }
+    // Public files shipped from Curina's /public (and other top-level routes
+    // Curina links to without the /Curina prefix while embedded on nestino.site).
+    if (pathnameMatchesPrefixList(pathname, curinaPrefixes)) {
+      if (isHtmlNavigation(request)) {
+        return redirectToCurinaMount(request);
+      }
+      return rewriteToCurina(request, curinaOrigin);
+    }
+    if (/\.[^/]+$/.test(pathname) && refererSuggestsCurina(request)) {
       return rewriteToCurina(request, curinaOrigin);
     }
   }
