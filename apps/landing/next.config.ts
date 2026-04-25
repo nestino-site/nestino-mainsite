@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+function normalizeOrigin(origin: string): string {
+  return origin.endsWith("/") ? origin.slice(0, -1) : origin;
+}
+
 const csp = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.posthog.com https://us.i.posthog.com https://eu.i.posthog.com https://va.vercel-scripts.com https://vitals.vercel-insights.com",
@@ -32,6 +36,16 @@ const nextConfig: NextConfig = {
         hostname: "**",
       },
     ],
+  },
+  async rewrites() {
+    const origin = process.env.CURINA_ORIGIN?.trim();
+    if (!origin) return [];
+
+    const curinaOrigin = normalizeOrigin(origin);
+    return [
+      { source: "/Curina", destination: `${curinaOrigin}/` },
+      { source: "/Curina/:path*", destination: `${curinaOrigin}/:path*` },
+    ];
   },
   async headers() {
     return [
