@@ -27,6 +27,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // Curina is hosted as a separate Vercel project and mounted here via
+  // next.config rewrites (CURINA_ORIGIN). Do not prefix with /{locale}/.
+  if (pathname === "/Curina" || pathname.startsWith("/Curina/")) {
+    return NextResponse.next();
+  }
+
   if (/\.[^/]+$/.test(pathname)) {
     return NextResponse.next();
   }
