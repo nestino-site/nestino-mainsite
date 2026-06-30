@@ -111,11 +111,11 @@ const homeCopy: Record<Locale, HomeCopy> = {
     secondaryCta: "See how it works",
     services: {
       eyebrow: "Nestino OS",
-      title: "Operations, demand, and guest intelligence in one stack.",
+      title: "One stack for operations, demand, and guest intelligence.",
       text:
-        "Three product layers share the same property record, guest memory, and partner signals — each one makes the others stronger.",
+        "PMS, Site Builder, and Curina share the same operating memory, so each layer makes the next one smarter.",
       centerLabel: "Nestino OS",
-      centerText: "One operating layer for property work, direct channels, guest memory, and partner data.",
+      centerText: "A calm operating layer connecting property work, direct channels, guest memory, and partner data.",
       groups: [
         {
           title: "Nestino PMS",
@@ -271,11 +271,11 @@ const homeCopy: Record<Locale, HomeCopy> = {
     secondaryCta: "ببینید چطور کار می‌کند",
     services: {
       eyebrow: "منظومه سرویس‌های نستینو",
-      title: "سه سیستم متصل که همدیگر را کامل می‌کنند.",
+      title: "یک لایه برای عملیات، تقاضا و هوش مهمان.",
       text:
-        "نستینو را مثل یک منظومه مهمان‌نوازی ببینید: عملیات، تقاضای مستقیم و هوش مهمان دور یک هسته مشترک می‌چرخند و همدیگر را تقویت می‌کنند.",
+        "PMS، Site Builder و Curina از یک حافظه عملیاتی مشترک استفاده می‌کنند تا هر لایه، لایه بعدی را دقیق‌تر کند.",
       centerLabel: "Nestino OS",
-      centerText: "یک لایه عملیاتی برای کار ملک، کانال‌های مستقیم، حافظه مهمان و داده شریک‌ها.",
+      centerText: "یک لایه آرام برای اتصال کار ملک، کانال‌های مستقیم، حافظه مهمان و داده شریک‌ها.",
       groups: [
         {
           title: "Nestino PMS",

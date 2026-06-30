@@ -19,16 +19,10 @@ type NestinoOsMapProps = {
 };
 
 const SYSTEMS = [
-  { short: "PMS", accent: "#4B5B4E", glow: "rgba(75,91,78,0.18)" },
-  { short: "Site", accent: "#C8A96A", glow: "rgba(200,169,106,0.22)" },
-  { short: "Curina", accent: "#262626", glow: "rgba(38,38,38,0.12)" },
+  { short: "PMS", label: "Operations", accent: "#4B5B4E" },
+  { short: "Site", label: "Direct demand", accent: "#C8A96A" },
+  { short: "Curina", label: "Guest intelligence", accent: "#262626" },
 ] as const;
-
-const NODE_POSITIONS = [
-  { cx: 120, cy: 160 },
-  { cx: 680, cy: 72 },
-  { cx: 680, cy: 248 },
-];
 
 export function NestinoOsMap({ services }: NestinoOsMapProps) {
   const [active, setActive] = useState(0);
@@ -36,188 +30,156 @@ export function NestinoOsMap({ services }: NestinoOsMapProps) {
   const system = SYSTEMS[active]!;
 
   return (
-    <div className="overflow-hidden rounded-[40px] border border-[#E8E2D7] bg-[#262626] shadow-[0_32px_100px_rgba(38,38,38,0.18)]">
-      <div className="border-b border-white/10 px-5 py-6 sm:px-8 sm:py-8">
-        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-xl">
-            <p className="font-mono text-xs uppercase tracking-[0.24em] text-[#C8A96A]">
-              {services.centerLabel}
-            </p>
-            <p className="mt-3 text-base leading-7 text-white/72 sm:text-lg">
-              {services.centerText}
-            </p>
-          </div>
+    <div className="overflow-hidden rounded-[40px] border border-[#E8E2D7] bg-white shadow-[0_24px_80px_rgba(38,38,38,0.08)]">
+      <div className="grid gap-6 px-5 py-6 sm:px-8 sm:py-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-[0.24em] text-[#C8A96A]">
+            {services.centerLabel}
+          </p>
+          <p className="mt-3 max-w-xl text-base leading-7 text-[#5f5f5f]">
+            {services.centerText}
+          </p>
+        </div>
 
-          <div className="flex rounded-full border border-white/10 bg-white/6 p-1">
+        <div className="rounded-[28px] border border-[#E8E2D7] bg-[#F8F6F1] p-3">
+          <div className="flex items-center justify-between gap-2 overflow-x-auto">
             {services.groups.map((item, index) => {
               const meta = SYSTEMS[index]!;
               return (
-              <button
-                key={item.title}
-                type="button"
-                onClick={() => setActive(index)}
-                className={[
-                  "rounded-full px-4 py-2.5 text-sm font-semibold transition sm:px-5",
-                  active === index
-                    ? "bg-white text-[#262626] shadow-sm"
-                    : "text-white/62 hover:text-white",
-                ].join(" ")}
-                aria-pressed={active === index}
-              >
-                {meta.short}
-              </button>
-            );
-            })}
-          </div>
-        </div>
-      </div>
-
-      <div className="relative overflow-hidden px-5 py-8 sm:px-8 sm:py-10">
-        <div
-          className="pointer-events-none absolute inset-0 opacity-80"
-          style={{
-            background: `radial-gradient(circle at 50% 42%, ${system.glow} 0%, transparent 58%)`,
-          }}
-        />
-
-        <div className="relative mx-auto max-w-4xl">
-          <svg
-            viewBox="0 0 800 320"
-            className="h-auto w-full"
-            aria-hidden
-          >
-            <defs>
-              <linearGradient id="nestino-hub" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#C8A96A" />
-                <stop offset="100%" stopColor="#E8D49E" />
-              </linearGradient>
-            </defs>
-
-            {NODE_POSITIONS.map((node, index) => (
-              <line
-                key={node.cx}
-                x1="400"
-                y1="160"
-                x2={node.cx}
-                y2={node.cy}
-                stroke={active === index ? SYSTEMS[index]!.accent : "rgba(255,255,255,0.14)"}
-                strokeWidth={active === index ? 2.5 : 1.5}
-                strokeDasharray={active === index ? undefined : "5 6"}
-              />
-            ))}
-
-            <circle cx="400" cy="160" r="58" fill="url(#nestino-hub)" opacity="0.95" />
-            <circle cx="400" cy="160" r="72" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
-            <text
-              x="400"
-              y="154"
-              textAnchor="middle"
-              fill="#262626"
-              fontSize="13"
-              fontWeight="700"
-              letterSpacing="3"
-            >
-              NESTINO
-            </text>
-            <text x="400" y="174" textAnchor="middle" fill="#262626" fontSize="11" fontWeight="600">
-              OS
-            </text>
-
-            {NODE_POSITIONS.map((node, index) => {
-              const isActive = active === index;
-              const accent = SYSTEMS[index]!.accent;
-              return (
-                <g
-                  key={node.cx}
-                  className="cursor-pointer"
+                <button
+                  key={item.title}
+                  type="button"
                   onClick={() => setActive(index)}
-                  role="button"
-                  aria-label={services.groups[index]!.title}
+                  className={[
+                    "min-w-[8.5rem] rounded-2xl border px-4 py-3 text-left transition",
+                    active === index
+                      ? "border-[#C8A96A] bg-white shadow-[0_12px_32px_rgba(38,38,38,0.08)]"
+                      : "border-transparent bg-transparent hover:bg-white/70",
+                  ].join(" ")}
+                  aria-pressed={active === index}
                 >
-                  <circle
-                    cx={node.cx}
-                    cy={node.cy}
-                    r={isActive ? 34 : 28}
-                    fill={isActive ? accent : "rgba(255,255,255,0.08)"}
-                    stroke={isActive ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.12)"}
-                    strokeWidth="1.5"
-                  />
-                  <text
-                    x={node.cx}
-                    y={node.cy + 4}
-                    textAnchor="middle"
-                    fill={isActive ? "#F8F6F1" : "rgba(255,255,255,0.72)"}
-                    fontSize="12"
-                    fontWeight="700"
-                  >
-                    {SYSTEMS[index]!.short}
-                  </text>
-                </g>
+                  <span className="block text-xs font-bold uppercase tracking-[0.16em]" style={{ color: meta.accent }}>
+                    {meta.short}
+                  </span>
+                  <span className="mt-1 block text-sm font-semibold text-[#262626]">
+                    {meta.label}
+                  </span>
+                </button>
               );
             })}
-          </svg>
+          </div>
         </div>
       </div>
 
-      <div className="border-t border-white/10 bg-[#F8F6F1] px-5 py-7 sm:px-8 sm:py-8">
-        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-          <div>
-            <p
-              className="text-xs font-bold uppercase tracking-[0.18em]"
-              style={{ color: system.accent }}
-            >
-              {group.kicker}
-            </p>
-            <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#262626]">
-              {group.title}
-            </h3>
-            <p className="mt-4 text-sm leading-7 text-[#787878] sm:text-base">
-              {group.text}
-            </p>
+      <div className="relative border-y border-[#E8E2D7] bg-[#F8F6F1] px-5 py-8 sm:px-8">
+        <div className="absolute left-8 right-8 top-1/2 hidden h-px bg-[#D8CCB8] lg:block" aria-hidden />
+        <div className="relative grid gap-4 lg:grid-cols-[1fr_0.62fr_1fr_1fr] lg:items-center">
+          <SystemCard group={services.groups[0]} index={0} active={active} onSelect={setActive} />
+
+          <div className="order-first mx-auto grid h-32 w-32 place-items-center rounded-full border border-[#C8A96A]/45 bg-white text-center shadow-[0_18px_50px_rgba(200,169,106,0.18)] lg:order-none">
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#C8A96A]">
+                Nestino
+              </p>
+              <p className="mt-1 text-2xl font-semibold tracking-[-0.05em] text-[#262626]">
+                OS
+              </p>
+            </div>
           </div>
 
-          <div className="rounded-[28px] border border-[#E8E2D7] bg-white p-5 sm:p-6">
-            <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#4B5B4E]">
-              Modules
-            </p>
-            <ul className="mt-4 grid gap-2 sm:grid-cols-2">
-              {group.items.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-3 rounded-2xl border border-[#E8E2D7]/80 bg-[#F8F6F1]/70 px-3.5 py-3"
-                >
-                  <span
-                    className="mt-1.5 h-2 w-2 shrink-0 rounded-full"
-                    style={{ backgroundColor: system.accent }}
-                  />
-                  <span className="text-sm leading-6 text-[#5f5f5f]">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <SystemCard group={services.groups[1]} index={1} active={active} onSelect={setActive} />
+          <SystemCard group={services.groups[2]} index={2} active={active} onSelect={setActive} />
+        </div>
+      </div>
+
+      <div className="grid gap-6 px-5 py-7 sm:px-8 sm:py-8 lg:grid-cols-[0.78fr_1.22fr]">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.18em]" style={{ color: system.accent }}>
+            {group.kicker}
+          </p>
+          <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#262626]">
+            {group.title}
+          </h3>
+          <p className="mt-4 text-sm leading-7 text-[#787878] sm:text-base">
+            {group.text}
+          </p>
         </div>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-4">
-          {services.flows.map(([title, text], index) => (
-            <article
-              key={title}
-              className="relative rounded-[24px] border border-[#E8E2D7] bg-white px-4 py-4"
-            >
-              {index < services.flows.length - 1 ? (
-                <span
-                  className="absolute -right-2 top-1/2 hidden h-px w-4 -translate-y-1/2 bg-[#C8A96A] md:block"
-                  aria-hidden
-                />
-              ) : null}
-              <span className="font-mono text-[11px] text-[#C8A96A]">
-                0{index + 1}
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#4B5B4E]">
+            Key modules
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {group.items.slice(0, 6).map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-[#E8E2D7] bg-[#F8F6F1] px-3.5 py-2 text-sm text-[#5f5f5f]"
+              >
+                {item}
               </span>
-              <h4 className="mt-2 text-sm font-semibold text-[#262626]">{title}</h4>
-              <p className="mt-1.5 text-xs leading-5 text-[#787878]">{text}</p>
-            </article>
-          ))}
+            ))}
+            {group.items.length > 6 ? (
+              <span className="rounded-full border border-[#E8E2D7] bg-white px-3.5 py-2 text-sm font-semibold text-[#4B5B4E]">
+                +{group.items.length - 6} more
+              </span>
+            ) : null}
+          </div>
         </div>
+      </div>
+
+      <div className="border-t border-[#E8E2D7] bg-[#F8F6F1]/70 px-5 py-5 sm:px-8">
+        <p className="text-sm leading-6 text-[#5f5f5f]">
+          <span className="font-semibold text-[#262626]">{services.flows[0]?.[0]}</span>
+          <span className="mx-2 text-[#C8A96A]">→</span>
+          <span className="font-semibold text-[#262626]">{services.flows[1]?.[0]}</span>
+          <span className="mx-2 text-[#C8A96A]">→</span>
+          <span className="font-semibold text-[#262626]">{services.flows[2]?.[0]}</span>
+          <span className="mx-2 text-[#C8A96A]">→</span>
+          <span className="font-semibold text-[#262626]">{services.flows[3]?.[0]}</span>
+        </p>
       </div>
     </div>
+  );
+}
+
+function SystemCard({
+  group,
+  index,
+  active,
+  onSelect,
+}: {
+  group: ServiceGroup;
+  index: number;
+  active: number;
+  onSelect: (index: number) => void;
+}) {
+  const meta = SYSTEMS[index]!;
+  const isActive = active === index;
+
+  return (
+    <button
+      type="button"
+      onClick={() => onSelect(index)}
+      className={[
+        "relative rounded-[30px] border bg-white p-5 text-left transition",
+        isActive
+          ? "border-[#C8A96A] shadow-[0_18px_50px_rgba(38,38,38,0.10)]"
+          : "border-[#E8E2D7] hover:border-[#C8A96A]/70",
+      ].join(" ")}
+      aria-pressed={isActive}
+    >
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <span className="rounded-full bg-[#F8F6F1] px-3 py-1.5 text-xs font-bold uppercase tracking-[0.16em]" style={{ color: meta.accent }}>
+          {meta.short}
+        </span>
+        <span className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: meta.accent }} />
+      </div>
+      <h3 className="text-xl font-semibold tracking-[-0.035em] text-[#262626]">
+        {group.title}
+      </h3>
+      <p className="mt-3 text-sm leading-6 text-[#787878]">
+        {meta.label}
+      </p>
+    </button>
   );
 }
