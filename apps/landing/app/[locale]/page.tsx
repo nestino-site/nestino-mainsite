@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -91,8 +90,7 @@ type HomeCopy = {
     eyebrow: string;
     title: string;
     text: string;
-    email: string;
-    curina: string;
+    telegram: string;
   };
   previewLabel: string;
   previewHint: string;
@@ -273,8 +271,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       title: "We are building with the first partner properties now.",
       text:
         "No fake customer logos. No invented metrics. If you want to shape the first Nestino Property OS and Curina network, start the conversation.",
-      email: "Email Nestino",
-      curina: "View Curina",
+      telegram: "Message @mosiho on Telegram",
     },
     previewLabel: "Product preview",
     previewHint: "Illustrative PMS panel",
@@ -453,8 +450,7 @@ const homeCopy: Record<Locale, HomeCopy> = {
       title: "الان در حال ساخت با اولین اقامتگاه‌های همکار هستیم.",
       text:
         "نه لوگوی مشتری جعلی، نه عددسازی. اگر می‌خواهید در شکل‌دادن اولین Property OS نستینو و شبکه Curina نقش داشته باشید، گفتگو را شروع کنید.",
-      email: "ایمیل به نستینو",
-      curina: "مشاهده Curina",
+      telegram: "پیام در تلگرام: @mosiho",
     },
     previewLabel: "پیش‌نمایش محصول",
     previewHint: "نمونه تصویری پنل PMS",
@@ -751,17 +747,13 @@ export default async function HomePage({ params }: PageProps) {
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <a
-              href="mailto:hello@nestino.ai?subject=Nestino%20early%20partner%20conversation"
+              href="https://t.me/mosiho"
+              target="_blank"
+              rel="noreferrer"
               className="rounded-full bg-[#262626] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#4B5B4E]"
             >
-              {copy.contact.email}
+              {copy.contact.telegram}
             </a>
-            <Link
-              href="/Curina"
-              className="rounded-full border border-[#E8E2D7] px-6 py-3 text-sm font-semibold text-[#262626] transition hover:border-[#C8A96A]"
-            >
-              {copy.contact.curina}
-            </Link>
           </div>
         </div>
       </section>
