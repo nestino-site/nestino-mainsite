@@ -30,7 +30,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     "@type": "Organization",
     name: "Nestino",
     url: siteUrl,
-    description: messages.meta.organizationDescription,
+    description:
+      "Nestino is a hospitality operating system for independent luxury properties.",
     email: "hello@nestino.ai",
   };
 

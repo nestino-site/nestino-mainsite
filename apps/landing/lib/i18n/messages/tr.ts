@@ -2,9 +2,9 @@ import type { Messages } from "./en";
 
 export const trMessages: Messages = {
   meta: {
-    homeTitle: "Nestino — Villanız, misafirleriniz, sıfır komisyon",
+    homeTitle: "Nestino — Bağımsız lüks tesisler için hospitality OS",
     homeDescription:
-      "OTA'lara %15-30 komisyon vermeyi bırakın. Nestino doğrudan rezervasyon motorunuzu kurar — Google, yapay zekâ araması ve yüksek dönüşümlü kanallar nitelikli misafirleri doğrudan size getirir. İlk ay ücretsiz.",
+      "Nestino; PMS iş akışlarını, misafir kimliğini, doğrudan talebi ve Curina yaşam tarzı ortaklıklarını premium hospitality için tek bir işletim katmanında birleştirir.",
     privacyTitle: "Gizlilik Politikası",
     privacyDescription:
       "Nestino’nun pazarlama sitesi ve denemeler için verileri nasıl işlediği.",
@@ -12,9 +12,9 @@ export const trMessages: Messages = {
     termsDescription: "Nestino pazarlama sitesi ve deneme aktivasyonu için şartlar.",
     ogLocale: "tr_TR",
     organizationDescription:
-      "Yapay zekâ destekli büyümeyle villa doğrudan rezervasyonlarını güçlendiriyoruz.",
+      "Bağımsız lüks tesisler için hospitality operating system.",
     websiteDescription:
-      "Yapay zekâ destekli büyümeyle villa doğrudan rezervasyonlarını güçlendiriyoruz.",
+      "Bağımsız lüks tesisler için hospitality operating system.",
   },
   languageSwitcher: {
     label: "Dil",
@@ -70,8 +70,8 @@ export const trMessages: Messages = {
       "Keşif başkasının altyapısında olduğunda premium villalar marjını ve kontrolünü kaybeder. Doğrudan rezervasyon, her konaklamada komisyon ödemeden sahip olabileceğiniz kaldıraçtır.",
     items: [
       {
-        title: "Her rezervasyonun %15–30’u OTA’lara gidiyor",
-        body: "Komisyonlar sessizce marjınızı her gece eritir—misafirperverlik yine sizde kalır.",
+        title: "Operasyonlar çok fazla araca bölünmüş durumda",
+        body: "Rezervasyonlar, odalar, housekeeping, misafir notları ve gelir kararları çoğu zaman tek sakin katmanda birleşmez.",
       },
       {
         title: "Misafirler sizi doğrudan bulamıyor",

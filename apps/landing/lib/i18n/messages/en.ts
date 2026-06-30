@@ -1,17 +1,17 @@
 export const enMessages = {
   meta: {
-    homeTitle: "Nestino — Your villa, your guests, zero commission",
+    homeTitle: "Nestino — Hospitality OS for independent luxury properties",
     homeDescription:
-      "Stop giving 15-30% to OTAs. Nestino builds your direct booking engine—Google, AI search, and high-converting channels bring qualified guests straight to you. First month free.",
+      "Nestino brings PMS workflows, guest identity, direct demand, and Curina lifestyle partnerships into one operating layer for premium hospitality.",
     privacyTitle: "Privacy Policy",
     privacyDescription: "How Nestino handles data for the marketing site and trials.",
     termsTitle: "Terms of Service",
     termsDescription: "Terms for using Nestino marketing site and trial activation.",
     ogLocale: "en_US",
     organizationDescription:
-      "Empowering villa direct bookings with AI-driven growth.",
+      "Hospitality operating system for independent luxury properties.",
     websiteDescription:
-      "Empowering villa direct bookings with AI-driven growth.",
+      "Hospitality operating system for independent luxury properties.",
   },
   languageSwitcher: {
     label: "Language",
@@ -67,8 +67,8 @@ export const enMessages = {
       "Premium villas lose margin and control when discovery happens on someone else’s rails. Direct booking is the lever you can own—without giving up a commission on every stay.",
     items: [
       {
-        title: "15–30% of every booking goes to OTAs",
-        body: "Commissions quietly eat your margin night after night—while you still do the hosting work.",
+        title: "Operations are split across too many tools",
+        body: "Reservations, rooms, housekeeping, guest notes, and revenue decisions rarely live in one calm layer.",
       },
       {
         title: "Guests can’t find you directly",
@@ -135,10 +135,10 @@ export const enMessages = {
   },
   proof: {
     badge: "First 30 days",
-    title: "What villa owners usually notice first",
+    title: "What early partners help shape first",
     subtitle:
       "A realistic picture of early momentum—not a promise of identical numbers for every property.",
-    dayWindow: "Day window",
+    dayWindow: "Product preview",
     dayWindowBody:
       "When we most often see the first meaningful shifts in inquiries, search visibility, and how guests talk to you.",
     milestones: [
@@ -224,9 +224,9 @@ export const enMessages = {
       },
       {
         id: "trial",
-        question: "How does the free month work?",
+        question: "How do early partner conversations work?",
         answer:
-          "Your first month is free with no credit card required. We’ll implement reasonable edits during the trial. After 30 days, continue from $399/mo (or quarterly/annual billing on the pricing page) or walk away—no lock-in.",
+          "We are speaking with early partner properties and lifestyle operators now. The goal is to understand fit before making any commercial promise.",
       },
       {
         id: "zero-commission",
@@ -273,7 +273,7 @@ export const enMessages = {
   },
   footer: {
     tagline:
-      "Empowering villa direct bookings with AI-driven growth.",
+      "Hospitality operating system for independent luxury properties.",
     legal: "Legal",
     privacy: "Privacy",
     terms: "Terms",
@@ -284,7 +284,7 @@ export const enMessages = {
       "Placeholder. This page is a structural stub for Nestino.ai. Replace with counsel-approved privacy policy before collecting production traffic. It should describe what you collect on the landing form (email, optional phone, property URL), analytics providers (Vercel Analytics, PostHog), email delivery (Resend), retention, and data subject rights.",
     termsHeading: "Terms of Service",
     termsBody:
-      "Placeholder. Replace with production terms covering the trial, subscription ($399/mo or other billing options after the free month), acceptable use, intellectual property, limitation of liability, and governing law. Align with your billing flow when Stripe is enabled in the operator console.",
+      "Placeholder. Replace with production terms covering early partner conversations, subscriptions once available, acceptable use, intellectual property, limitation of liability, and governing law. Align with your billing flow when Stripe is enabled in the operator console.",
   },
   propertySites: {
     title: "Live property sites",
@@ -331,7 +331,7 @@ export const enMessages = {
     },
     faq: {
       trialAnswer:
-        "Your first month is free with no credit card required. We’ll implement reasonable edits during the trial. After 30 days, continue on the Bowora quarterly partner rate shown on this page or walk away—no lock-in.",
+        "Early partner terms are confirmed in conversation. We will not imply a live customer result or commercial guarantee before there is one.",
       pricingAfterAnswer:
         "If you want to keep the momentum, stay on the quarterly plan at the Bowora partner price (50% off list). Your direct channel stays live and the optimization loop keeps running. See Terms for full details.",
     },

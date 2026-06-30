@@ -49,11 +49,11 @@ const notoNaskhArabic = Noto_Naskh_Arabic({
 export const metadata: Metadata = {
   metadataBase: getMetadataBaseUrl(),
   title: {
-    default: "Nestino — Your villa, your guests, zero commission",
+    default: "Nestino — Hospitality OS for independent luxury properties",
     template: "%s | Nestino",
   },
   description:
-    "Stop giving 15-30% to OTAs. Nestino builds your direct booking engine—Google, AI search, and high-converting channels bring qualified guests straight to you. First month free.",
+    "Nestino brings property operations, guest identity, direct demand, and Curina lifestyle partnerships into one operating layer for premium hospitality.",
   openGraph: {
     type: "website",
     siteName: "Nestino",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
         url: "/nestino-og.png",
         width: 1200,
         height: 628,
-        alt: "Nestino — Empowering villa direct bookings with AI-driven growth",
+        alt: "Nestino hospitality operating system",
       },
     ],
   },
@@ -140,12 +140,12 @@ export default async function RootLayout({
   const lang = htmlLang(locale);
   const htmlClass =
     locale === "tr"
-      ? `${interMarketing.variable} font-sans is-locale-tr`
-      : `${interMarketing.variable} font-sans`;
+      ? `${interMarketing.variable} ${fraunces.variable} font-sans is-locale-tr`
+      : `${interMarketing.variable} ${fraunces.variable} font-sans`;
 
   return (
     <html lang={lang} className={htmlClass}>
-      <body className="min-h-screen flex flex-col bg-background text-foreground antialiased">
+      <body className="min-h-screen flex flex-col bg-[#F8F6F1] text-[#262626] antialiased">
         <PostHogProvider>
           {children}
         </PostHogProvider>
