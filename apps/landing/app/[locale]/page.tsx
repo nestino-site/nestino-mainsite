@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 
 import { FullscreenImage } from "@/components/ui/fullscreen-image";
 import { NestinoOsMap } from "@/components/sections/nestino-os-map";
+import { ProductPreviewCarousel } from "@/components/sections/product-preview-carousel";
 import { getSiteUrl } from "@/lib/constants";
 import { isPublicLocale, type Locale, type PublicLocale } from "@/lib/i18n/config";
 import { localizedPath } from "@/lib/i18n/paths";
@@ -801,24 +802,7 @@ function ProductPreview({
   copy: HomeCopy;
   compact?: boolean;
 }) {
-  return (
-    <figure className="rounded-[34px] border border-[#E8E2D7] bg-white p-3 shadow-[0_24px_80px_rgba(38,38,38,0.10)]">
-      <div className="flex items-center justify-between px-2 pb-3">
-        <figcaption className="text-xs font-bold uppercase tracking-[0.18em] text-[#4B5B4E]">
-          {copy.previewLabel}
-        </figcaption>
-        <span className="text-xs text-[#787878]">{copy.previewHint}</span>
-      </div>
-      <FullscreenImage
-        src="/pms-panel.png"
-        alt={copy.previewAlt}
-        width={1536}
-        height={1024}
-        priority={!compact}
-        className="h-auto rounded-[24px] border border-[#E8E2D7]"
-      />
-    </figure>
-  );
+  return <ProductPreviewCarousel label={copy.previewLabel} compact={compact} />;
 }
 
 function StoryCardGrid({ items }: { items: Array<[string, string]> }) {
