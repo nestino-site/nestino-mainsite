@@ -1,8 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { FullscreenImage } from "@/components/ui/fullscreen-image";
 import { getSiteUrl } from "@/lib/constants";
 import { isPublicLocale, type Locale, type PublicLocale } from "@/lib/i18n/config";
 import { localizedPath } from "@/lib/i18n/paths";
@@ -734,7 +734,7 @@ function ProductPreview({
         </figcaption>
         <span className="text-xs text-[#787878]">{copy.previewHint}</span>
       </div>
-      <Image
+      <FullscreenImage
         src="/pms-panel.png"
         alt={copy.previewAlt}
         width={1536}
@@ -882,7 +882,7 @@ function EcosystemImage({ alt, caption }: { alt: string; caption: string }) {
       <figcaption className="px-2 pb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#4B5B4E]">
         {caption}
       </figcaption>
-      <Image
+      <FullscreenImage
         src="/guest-curina-network.png"
         alt={alt}
         width={1024}
