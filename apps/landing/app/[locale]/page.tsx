@@ -11,6 +11,13 @@ type PageProps = {
   params: Promise<{ locale: string }>;
 };
 
+type ServiceGroup = {
+  title: string;
+  kicker: string;
+  text: string;
+  items: string[];
+};
+
 type HomeCopy = {
   metaTitle: string;
   metaDescription: string;
@@ -21,6 +28,15 @@ type HomeCopy = {
   heroText: string;
   primaryCta: string;
   secondaryCta: string;
+  services: {
+    eyebrow: string;
+    title: string;
+    text: string;
+    centerLabel: string;
+    centerText: string;
+    groups: [ServiceGroup, ServiceGroup, ServiceGroup];
+    flows: Array<[string, string]>;
+  };
   problem: {
     eyebrow: string;
     title: string;
@@ -43,13 +59,21 @@ type HomeCopy = {
     eyebrow: string;
     title: string;
     text: string;
-    items: string[];
+    items: Array<[string, string]>;
+    profile: {
+      label: string;
+      title: string;
+      rows: Array<[string, string]>;
+    };
   };
   curina: {
     eyebrow: string;
     title: string;
     text: string;
-    items: string[];
+    items: Array<[string, string]>;
+    loop: Array<[string, string]>;
+    imageAlt: string;
+    imageCaption: string;
   };
   engine: {
     eyebrow: string;
@@ -67,7 +91,6 @@ type HomeCopy = {
   previewLabel: string;
   previewHint: string;
   previewAlt: string;
-  signalLabel: string;
 };
 
 const homeCopy: Record<Locale, HomeCopy> = {
@@ -85,6 +108,62 @@ const homeCopy: Record<Locale, HomeCopy> = {
       "Nestino brings PMS workflows, guest identity, direct booking growth, and Curina lifestyle partnerships into one operating layer for independent premium hospitality.",
     primaryCta: "Become an early partner",
     secondaryCta: "See how it works",
+    services: {
+      eyebrow: "Nestino services map",
+      title: "Three connected systems, designed to complete each other.",
+      text:
+        "Think of Nestino as a hospitality constellation: operations, direct demand, and guest intelligence orbit the same property and keep feeding each other.",
+      centerLabel: "Nestino OS",
+      centerText: "One operating layer for property work, direct channels, guest memory, and partner data.",
+      groups: [
+        {
+          title: "Nestino PMS",
+          kicker: "Property operations core",
+          text:
+            "Runs the daily hotel workflow and becomes the clean source of truth for rooms, guests, rates, service, and operations.",
+          items: [
+            "Inventory",
+            "Restaurant",
+            "Add-on market",
+            "Room service",
+            "Housekeeping",
+            "ARI",
+            "Front desk",
+            "Pricing engine",
+            "Channel manager integrations",
+            "Event management",
+            "CRM",
+            "Content management",
+          ],
+        },
+        {
+          title: "Nestino Site Builder",
+          kicker: "Direct demand surface",
+          text:
+            "Turns the property into a fast, branded direct-sales channel with content, traffic growth, and payment flow connected to the operating layer.",
+          items: ["Site builder", "Traffic Engine", "PGW"],
+        },
+        {
+          title: "Nestino Curina",
+          kicker: "Guest and lifestyle network",
+          text:
+            "Connects guest profiles, multi-property behavior, community, partner data, and AI recommendations into a richer hospitality network.",
+          items: [
+            "Guest profile",
+            "Multi-hotel integration",
+            "Community builder",
+            "Data integration: gyms, fashion brands, restaurants, hotels, banks, airlines",
+            "AI action recommender",
+          ],
+        },
+      ],
+      flows: [
+        ["PMS captures operations", "Rooms, service, rates, events, and CRM create the trusted property record."],
+        ["Site Builder creates demand", "Traffic and payments bring direct guests back into the operating system."],
+        ["Curina enriches identity", "Partner and lifestyle activity makes the guest profile more useful."],
+        ["AI recommends next actions", "Nestino can suggest service, pricing, content, offer, and partner actions."],
+      ],
+    },
     problem: {
       eyebrow: "The problem",
       title: "Hospitality data is split across too many tools.",
@@ -116,17 +195,45 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     identity: {
       eyebrow: "Guest Identity",
-      title: "One guest profile across the whole experience.",
+      title: "One living guest profile, not another CRM record.",
       text:
-        "Nestino should remember what matters: stay history, preferences, service notes, lifestyle activity, and direct booking intent.",
-      items: ["Hotel stay", "Restaurant", "Gym", "Cafe", "Spa", "Event", "Retail", "Airport lounge"],
+        "Nestino turns the moments around a stay into one consent-aware profile: what the guest booked, what they prefer, how they like to be served, and what they may want next.",
+      items: [
+        ["Stay memory", "Past and upcoming stays, room preferences, rate context, arrival details, and booking intent."],
+        ["Service notes", "Useful context for front desk, housekeeping, concierge, and management without forcing teams to search across tools."],
+        ["Lifestyle signals", "Dining, wellness, cafe, event, retail, and Curina activity that helps the property understand the whole guest journey."],
+        ["Personalization layer", "Recommendations and offers become more relevant because they come from a real profile, not a cold audience segment."],
+      ],
+      profile: {
+        label: "Guest profile",
+        title: "What Nestino remembers",
+        rows: [
+          ["Preference", "Quiet room, late checkout, wellness interest"],
+          ["Stay context", "Repeat guest, direct booking, arrival notes"],
+          ["Curina activity", "Restaurant, spa, gallery, cafe, event"],
+          ["Next action", "Relevant offer, service prompt, return-stay idea"],
+        ],
+      },
     },
     curina: {
       eyebrow: "Curina",
-      title: "The lifestyle network around the stay.",
+      title: "Curina turns nearby lifestyle partners into part of the stay.",
       text:
-        "Hotels, restaurants, cafes, gyms, wellness spaces, and local experiences become part of one guest journey.",
-      items: ["Boutique hotel", "Luxury cafe", "Gym", "Restaurant", "Wellness", "Gallery", "Coworking", "Event venue"],
+        "Curina is the network layer around Nestino: curated restaurants, cafes, gyms, wellness spaces, galleries, coworking, retail, and local experiences that can receive demand from hotels and return richer guest signals.",
+      items: [
+        ["For guests", "A more useful city experience: places, benefits, recommendations, and experiences matched to the profile."],
+        ["For properties", "A better way to extend hospitality beyond the room while learning what guests value outside the hotel."],
+        ["For partners", "A premium demand channel connected to high-intent hotel guests, not a generic coupon marketplace."],
+        ["For Nestino", "Every interaction can strengthen recommendations, lifecycle marketing, and direct relationship quality."],
+      ],
+      loop: [
+        ["01", "Guest checks in"],
+        ["02", "Profile becomes active"],
+        ["03", "Curina recommends the right places"],
+        ["04", "Activity enriches future stays"],
+      ],
+      imageAlt: "Curina lifestyle network connected to a central Nestino guest profile",
+      imageCaption: "Product illustration: guest profile connected with hotel, dining, wellness, work, culture, and events",
     },
     engine: {
       eyebrow: "Demand engine",
@@ -146,7 +253,6 @@ const homeCopy: Record<Locale, HomeCopy> = {
     previewLabel: "Product preview",
     previewHint: "Illustrative PMS panel",
     previewAlt: "Nestino PMS panel product preview",
-    signalLabel: "Connected signal",
   },
   fa: {
     metaTitle: "Nestino — سیستم عامل مهمان‌نوازی برای اقامتگاه‌های لوکس مستقل",
@@ -162,6 +268,62 @@ const homeCopy: Record<Locale, HomeCopy> = {
       "نستینو جریان‌های کاری PMS، هویت مهمان، رشد رزرو مستقیم و همکاری‌های Curina را برای اقامتگاه‌های لوکس مستقل در یک لایه عملیاتی جمع می‌کند.",
     primaryCta: "همکار اولیه شوید",
     secondaryCta: "ببینید چطور کار می‌کند",
+    services: {
+      eyebrow: "منظومه سرویس‌های نستینو",
+      title: "سه سیستم متصل که همدیگر را کامل می‌کنند.",
+      text:
+        "نستینو را مثل یک منظومه مهمان‌نوازی ببینید: عملیات، تقاضای مستقیم و هوش مهمان دور یک هسته مشترک می‌چرخند و همدیگر را تقویت می‌کنند.",
+      centerLabel: "Nestino OS",
+      centerText: "یک لایه عملیاتی برای کار ملک، کانال‌های مستقیم، حافظه مهمان و داده شریک‌ها.",
+      groups: [
+        {
+          title: "Nestino PMS",
+          kicker: "هسته عملیات ملک",
+          text:
+            "جریان روزانه هتل را مدیریت می‌کند و منبع تمیز حقیقت برای اتاق‌ها، مهمان‌ها، نرخ‌ها، سرویس و عملیات می‌شود.",
+          items: [
+            "Inventory",
+            "Restaurant",
+            "Add-on market",
+            "Room service",
+            "Housekeeping",
+            "ARI",
+            "Front desk",
+            "Pricing engine",
+            "Channel manager integrations",
+            "Event management",
+            "CRM",
+            "Content management",
+          ],
+        },
+        {
+          title: "Nestino Site Builder",
+          kicker: "سطح تقاضای مستقیم",
+          text:
+            "ملک را به یک کانال فروش مستقیم سریع و برندشده تبدیل می‌کند؛ با محتوا، رشد ترافیک و پرداخت متصل به لایه عملیات.",
+          items: ["Site builder", "Traffic Engine", "PGW"],
+        },
+        {
+          title: "Nestino Curina",
+          kicker: "شبکه مهمان و سبک زندگی",
+          text:
+            "پروفایل مهمان، رفتار چند‌هتلی، جامعه، داده شریک‌ها و پیشنهادهای AI را به یک شبکه مهمان‌نوازی غنی‌تر وصل می‌کند.",
+          items: [
+            "Guest profile",
+            "Multi-hotel integration",
+            "Community builder",
+            "Data integration: gyms, fashion brands, restaurants, hotels, banks, airlines",
+            "AI action recommender",
+          ],
+        },
+      ],
+      flows: [
+        ["PMS عملیات را ثبت می‌کند", "اتاق، سرویس، نرخ، رویداد و CRM رکورد قابل اعتماد ملک را می‌سازند."],
+        ["Site Builder تقاضا می‌سازد", "ترافیک و پرداخت، مهمان مستقیم را به سیستم عملیاتی برمی‌گردانند."],
+        ["Curina هویت را غنی می‌کند", "فعالیت شریک‌ها و سبک زندگی پروفایل مهمان را کاربردی‌تر می‌کند."],
+        ["AI اقدام بعدی را پیشنهاد می‌دهد", "نستینو می‌تواند اقدام‌های سرویس، قیمت، محتوا، پیشنهاد و شریک را توصیه کند."],
+      ],
+    },
     problem: {
       eyebrow: "مسئله",
       title: "داده‌های مهمان‌نوازی بین ابزارهای زیادی پخش شده‌اند.",
@@ -193,17 +355,45 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     identity: {
       eyebrow: "هویت مهمان",
-      title: "یک پروفایل مهمان برای کل تجربه.",
+      title: "یک پروفایل زنده از مهمان، نه فقط یک رکورد CRM دیگر.",
       text:
-        "نستینو باید چیزهای مهم را به خاطر بسپارد: تاریخچه اقامت، ترجیحات، یادداشت‌های سرویس، فعالیت سبک زندگی و قصد رزرو مستقیم.",
-      items: ["اقامت هتل", "رستوران", "باشگاه", "کافه", "اسپا", "رویداد", "خرده‌فروشی", "لانژ فرودگاه"],
+        "نستینو لحظه‌های اطراف اقامت را به یک پروفایل آگاه از رضایت کاربر تبدیل می‌کند: مهمان چه رزرو کرده، چه چیزی را ترجیح می‌دهد، چطور دوست دارد سرویس بگیرد و احتمالاً بعداً چه می‌خواهد.",
+      items: [
+        ["حافظه اقامت", "اقامت‌های قبلی و بعدی، ترجیح اتاق، زمینه نرخ، جزئیات ورود و قصد رزرو."],
+        ["یادداشت‌های سرویس", "زمینه کاربردی برای پذیرش، خانه‌داری، کانسیرج و مدیریت، بدون جستجو بین چند ابزار."],
+        ["سیگنال‌های سبک زندگی", "رستوران، wellness، کافه، رویداد، خرده‌فروشی و فعالیت Curina که مسیر کامل مهمان را روشن‌تر می‌کند."],
+        ["لایه شخصی‌سازی", "پیشنهادها زمانی دقیق‌تر می‌شوند که از یک پروفایل واقعی بیایند، نه از یک سگمنت سرد بازاریابی."],
+      ],
+      profile: {
+        label: "پروفایل مهمان",
+        title: "نستینو چه چیزی را به خاطر می‌سپارد",
+        rows: [
+          ["ترجیح", "اتاق آرام، خروج دیرتر، علاقه به wellness"],
+          ["زمینه اقامت", "مهمان تکراری، رزرو مستقیم، نکات ورود"],
+          ["فعالیت Curina", "رستوران، اسپا، گالری، کافه، رویداد"],
+          ["اقدام بعدی", "پیشنهاد مرتبط، یادآوری سرویس، ایده بازگشت"],
+        ],
+      },
     },
     curina: {
       eyebrow: "Curina",
-      title: "شبکه سبک زندگی پیرامون اقامت.",
+      title: "Curina شریک‌های سبک زندگی نزدیک اقامت را به بخشی از تجربه تبدیل می‌کند.",
       text:
-        "هتل‌ها، رستوران‌ها، کافه‌ها، باشگاه‌ها، wellness و تجربه‌های محلی بخشی از یک مسیر مهمان می‌شوند.",
-      items: ["بوتیک‌هتل", "کافه لوکس", "باشگاه", "رستوران", "wellness", "گالری", "فضای کار", "محل رویداد"],
+        "Curina لایه شبکه‌ای اطراف نستینو است: رستوران‌ها، کافه‌ها، باشگاه‌ها، فضاهای wellness، گالری‌ها، فضای کار، خرده‌فروشی و تجربه‌های محلی که می‌توانند از هتل‌ها تقاضا بگیرند و سیگنال‌های دقیق‌تری از مهمان برگردانند.",
+      items: [
+        ["برای مهمان", "تجربه شهری مفیدتر: مکان‌ها، مزایا، پیشنهادها و تجربه‌هایی که با پروفایل هماهنگ‌اند."],
+        ["برای اقامتگاه", "راهی بهتر برای گسترش مهمان‌نوازی بیرون از اتاق و فهمیدن اینکه مهمان واقعاً چه چیزی را ارزشمند می‌داند."],
+        ["برای شریک‌ها", "کانال تقاضای پریمیوم متصل به مهمانان هتل، نه یک بازار تخفیف عمومی."],
+        ["برای نستینو", "هر تعامل می‌تواند پیشنهادها، بازاریابی چرخه عمر و کیفیت رابطه مستقیم را بهتر کند."],
+      ],
+      loop: [
+        ["۰۱", "مهمان وارد می‌شود"],
+        ["۰۲", "پروفایل فعال می‌شود"],
+        ["۰۳", "Curina مکان‌های مناسب را پیشنهاد می‌دهد"],
+        ["۰۴", "فعالیت‌ها اقامت‌های بعدی را غنی‌تر می‌کنند"],
+      ],
+      imageAlt: "شبکه سبک زندگی Curina متصل به پروفایل مهمان نستینو",
+      imageCaption: "تصویر محصول: پروفایل مهمان متصل به هتل، غذا، wellness، کار، فرهنگ و رویداد",
     },
     engine: {
       eyebrow: "موتور تقاضا",
@@ -223,7 +413,6 @@ const homeCopy: Record<Locale, HomeCopy> = {
     previewLabel: "پیش‌نمایش محصول",
     previewHint: "نمونه تصویری پنل PMS",
     previewAlt: "پیش‌نمایش پنل PMS نستینو",
-    signalLabel: "سیگنال متصل",
   },
 };
 
@@ -357,6 +546,17 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
+      <section id="services-map" className="bg-white px-4 py-20 sm:px-6">
+        <div className="mx-auto max-w-6xl">
+          <SectionHeader
+            eyebrow={copy.services.eyebrow}
+            title={copy.services.title}
+            text={copy.services.text}
+          />
+          <ServicesConstellation services={copy.services} />
+        </div>
+      </section>
+
       <section id="problem" className="bg-white px-4 py-20 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
@@ -415,24 +615,33 @@ export default async function HomePage({ params }: PageProps) {
       </section>
 
       <section id="guest-identity" className="bg-white px-4 py-20 sm:px-6">
-        <div className="mx-auto max-w-6xl">
-          <SectionHeader
-            eyebrow={copy.identity.eyebrow}
-            title={copy.identity.title}
-            text={copy.identity.text}
-          />
-          <SignalGrid items={copy.identity.items} signalLabel={copy.signalLabel} />
+        <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+          <div>
+            <SectionHeader
+              eyebrow={copy.identity.eyebrow}
+              title={copy.identity.title}
+              text={copy.identity.text}
+            />
+            <StoryCardGrid items={copy.identity.items} />
+          </div>
+          <GuestProfileCard profile={copy.identity.profile} />
         </div>
       </section>
 
       <section id="curina" className="bg-[#F8F6F1] px-4 py-20 sm:px-6">
         <div className="mx-auto max-w-6xl">
-          <SectionHeader
-            eyebrow={copy.curina.eyebrow}
-            title={copy.curina.title}
-            text={copy.curina.text}
-          />
-          <SignalGrid items={copy.curina.items} signalLabel={copy.signalLabel} />
+          <div className="grid items-end gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+            <SectionHeader
+              eyebrow={copy.curina.eyebrow}
+              title={copy.curina.title}
+              text={copy.curina.text}
+            />
+            <CurinaLoop items={copy.curina.loop} />
+          </div>
+          <div className="mt-2 grid items-start gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+            <EcosystemImage alt={copy.curina.imageAlt} caption={copy.curina.imageCaption} />
+            <StoryCardGrid items={copy.curina.items} />
+          </div>
         </div>
       </section>
 
@@ -539,22 +748,149 @@ function ProductPreview({
   );
 }
 
-function SignalGrid({
-  items,
-  signalLabel,
+function ServicesConstellation({
+  services,
 }: {
-  items: string[];
-  signalLabel: string;
+  services: HomeCopy["services"];
 }) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      {items.map((item) => (
-        <div key={item} className="rounded-3xl border border-[#E8E2D7] bg-white p-5 shadow-[0_16px_48px_rgba(38,38,38,0.05)]">
+    <div className="rounded-[42px] border border-[#E8E2D7] bg-[#F8F6F1] p-4 shadow-[0_24px_80px_rgba(38,38,38,0.08)] sm:p-6">
+      <div className="relative overflow-hidden rounded-[34px] border border-[#E8E2D7] bg-white p-5 sm:p-8">
+        <div className="absolute inset-x-8 top-1/2 h-32 -translate-y-1/2 rounded-full bg-[#C8A96A]/15 blur-3xl" />
+        <div className="relative grid items-center gap-5 lg:grid-cols-[1fr_0.74fr_1fr]">
+          <ServicePillar group={services.groups[0]} tone="olive" />
+
+          <div className="order-first grid place-items-center lg:order-none">
+            <div className="relative grid h-56 w-56 place-items-center rounded-full border border-[#C8A96A]/45 bg-[#F8F6F1] text-center shadow-[0_20px_70px_rgba(200,169,106,0.22)]">
+              <div className="absolute -inset-4 rounded-full border border-dashed border-[#C8A96A]/35" />
+              <div className="absolute -inset-10 rounded-full border border-[#E8E2D7]" />
+              <div className="px-6">
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#C8A96A]">{services.centerLabel}</p>
+                <p className="mt-4 text-sm leading-6 text-[#5f5f5f]">{services.centerText}</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-5">
+            <ServicePillar group={services.groups[1]} tone="gold" />
+            <ServicePillar group={services.groups[2]} tone="charcoal" />
+          </div>
+        </div>
+
+        <div className="relative mt-6 grid gap-3 md:grid-cols-4">
+          {services.flows.map(([title, text]) => (
+            <article key={title} className="rounded-3xl border border-[#E8E2D7] bg-[#F8F6F1]/80 p-5">
+              <h3 className="text-sm font-semibold text-[#262626]">{title}</h3>
+              <p className="mt-2 text-xs leading-5 text-[#787878]">{text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ServicePillar({
+  group,
+  tone,
+}: {
+  group: HomeCopy["services"]["groups"][number];
+  tone: "olive" | "gold" | "charcoal";
+}) {
+  const toneClass = {
+    olive: "from-[#4B5B4E] to-[#7A8A73]",
+    gold: "from-[#C8A96A] to-[#E8D49E]",
+    charcoal: "from-[#262626] to-[#5f5f5f]",
+  }[tone];
+
+  return (
+    <article className="rounded-[30px] border border-[#E8E2D7] bg-white p-5 shadow-[0_16px_48px_rgba(38,38,38,0.05)]">
+      <div className={`h-1.5 rounded-full bg-gradient-to-r ${toneClass}`} />
+      <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-[#4B5B4E]">{group.kicker}</p>
+      <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#262626]">{group.title}</h3>
+      <p className="mt-3 text-sm leading-6 text-[#787878]">{group.text}</p>
+      <div className="mt-5 flex flex-wrap gap-2">
+        {group.items.map((item) => (
+          <span key={item} className="rounded-full border border-[#E8E2D7] bg-[#F8F6F1] px-3 py-1.5 text-xs font-medium text-[#5f5f5f]">
+            {item}
+          </span>
+        ))}
+      </div>
+    </article>
+  );
+}
+
+function StoryCardGrid({ items }: { items: Array<[string, string]> }) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      {items.map(([title, text]) => (
+        <div key={title} className="rounded-3xl border border-[#E8E2D7] bg-white p-5 shadow-[0_16px_48px_rgba(38,38,38,0.05)]">
           <div className="mb-5 h-1 rounded-full bg-gradient-to-r from-transparent via-[#C8A96A] to-transparent" />
-          <p className="font-semibold text-[#262626]">{item}</p>
-          <p className="mt-2 text-sm text-[#787878]">{signalLabel}</p>
+          <p className="font-semibold text-[#262626]">{title}</p>
+          <p className="mt-2 text-sm leading-6 text-[#787878]">{text}</p>
         </div>
       ))}
     </div>
+  );
+}
+
+function GuestProfileCard({
+  profile,
+}: {
+  profile: HomeCopy["identity"]["profile"];
+}) {
+  return (
+    <div className="relative overflow-hidden rounded-[38px] border border-[#E8E2D7] bg-[#F8F6F1] p-5 shadow-[0_24px_80px_rgba(38,38,38,0.08)]">
+      <div className="absolute inset-x-10 top-14 h-40 rounded-full bg-[#C8A96A]/20 blur-3xl" />
+      <div className="relative rounded-[30px] border border-[#E8E2D7] bg-white p-6">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4B5B4E]">{profile.label}</p>
+            <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-[#262626]">{profile.title}</h3>
+          </div>
+          <div className="grid h-16 w-16 place-items-center rounded-full border border-[#E8E2D7] bg-[#F8F6F1] text-xl text-[#C8A96A]">
+            N
+          </div>
+        </div>
+        <div className="mt-7 space-y-3">
+          {profile.rows.map(([label, value]) => (
+            <div key={label} className="grid gap-3 rounded-2xl border border-[#E8E2D7] bg-[#F8F6F1]/70 p-4 sm:grid-cols-[0.36fr_0.64fr]">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#4B5B4E]">{label}</p>
+              <p className="text-sm leading-6 text-[#5f5f5f]">{value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CurinaLoop({ items }: { items: Array<[string, string]> }) {
+  return (
+    <div className="grid gap-3 sm:grid-cols-2">
+      {items.map(([number, label]) => (
+        <div key={number} className="flex items-center gap-3 rounded-full border border-[#E8E2D7] bg-white px-4 py-3 shadow-[0_12px_36px_rgba(38,38,38,0.05)]">
+          <span className="font-mono text-xs text-[#C8A96A]">{number}</span>
+          <span className="text-sm font-semibold text-[#262626]">{label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function EcosystemImage({ alt, caption }: { alt: string; caption: string }) {
+  return (
+    <figure className="rounded-[34px] border border-[#E8E2D7] bg-white p-3 shadow-[0_24px_80px_rgba(38,38,38,0.10)]">
+      <figcaption className="px-2 pb-3 text-xs font-bold uppercase tracking-[0.18em] text-[#4B5B4E]">
+        {caption}
+      </figcaption>
+      <Image
+        src="/guest-curina-network.png"
+        alt={alt}
+        width={1024}
+        height={640}
+        className="h-auto rounded-[24px] border border-[#E8E2D7]"
+      />
+    </figure>
   );
 }

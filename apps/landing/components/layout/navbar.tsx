@@ -9,6 +9,7 @@ import { localizedPath } from "@/lib/i18n/paths";
 
 const sectionLinksByLocale = {
   en: [
+    { id: "services-map", label: "Services" },
     { id: "problem", label: "Problem" },
     { id: "how-it-works", label: "How it works" },
     { id: "property-os", label: "Property OS" },
@@ -17,6 +18,7 @@ const sectionLinksByLocale = {
     { id: "engine", label: "Demand Engine" },
   ],
   fa: [
+    { id: "services-map", label: "منظومه" },
     { id: "problem", label: "مسئله" },
     { id: "how-it-works", label: "روش کار" },
     { id: "property-os", label: "Property OS" },
