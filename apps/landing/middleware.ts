@@ -97,6 +97,14 @@ export function middleware(request: NextRequest) {
   const curinaOrigin = curinaOriginFromEnv();
   const curinaPrefixes = curinaPathPrefixes();
 
+  if (pathname === "/fa" || pathname.startsWith("/fa/")) {
+    const nextUrl = request.nextUrl.clone();
+    const stripped =
+      pathname === "/fa" ? "/" : pathname.slice("/fa".length) || "/";
+    nextUrl.pathname = stripped;
+    return NextResponse.redirect(nextUrl, 308);
+  }
+
   if (pathname.startsWith("/images")) {
     return NextResponse.next();
   }

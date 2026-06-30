@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 
-import { defaultLocale, type Locale } from "@/lib/i18n/config";
+import { defaultLocale, publicLocales, type Locale } from "@/lib/i18n/config";
 import { localizedPath, switchLocalePath } from "@/lib/i18n/paths";
 
 import { useLocaleContext } from "./locale-provider";
@@ -18,7 +18,7 @@ export function localizedHomeHref(locale: Locale, queryAndHash: string): string 
   return `${base}${piece}`;
 }
 
-const ORDER: Locale[] = ["en", "fa"];
+const ORDER: Locale[] = [...publicLocales];
 
 /** Regional flag shown next to each locale label (emoji, no extra assets). */
 const LOCALE_FLAG: Record<Locale, string> = {
@@ -29,6 +29,11 @@ const LOCALE_FLAG: Record<Locale, string> = {
 export function LanguageSwitcher() {
   const pathname = usePathname();
   const { locale, messages } = useLocaleContext();
+
+  if (ORDER.length <= 1) {
+    return null;
+  }
+
   const ls = messages.languageSwitcher;
 
   return (

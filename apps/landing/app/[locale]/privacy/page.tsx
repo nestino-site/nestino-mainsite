@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getSiteUrl } from "@/lib/constants";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { isPublicLocale, type PublicLocale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/get-messages";
 import { localizedPath } from "@/lib/i18n/paths";
 
@@ -12,10 +12,10 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { locale: raw } = await params;
-  if (!isLocale(raw)) return {};
+  if (!isPublicLocale(raw)) return {};
   const messages = getMessages(raw);
   const siteUrl = getSiteUrl();
-  const locale = raw as Locale;
+  const locale = raw as PublicLocale;
   const path = localizedPath(locale, "/privacy");
 
   return {
@@ -25,7 +25,6 @@ export async function generateMetadata({
       canonical: path,
       languages: {
         en: `${siteUrl}${localizedPath("en", "/privacy")}`,
-        fa: `${siteUrl}${localizedPath("fa", "/privacy")}`,
         "x-default": `${siteUrl}${localizedPath("en", "/privacy")}`,
       },
     },
@@ -34,7 +33,7 @@ export async function generateMetadata({
 
 export default async function PrivacyPage({ params }: PageProps) {
   const { locale: raw } = await params;
-  if (!isLocale(raw)) {
+  if (!isPublicLocale(raw)) {
     notFound();
   }
   const messages = getMessages(raw);

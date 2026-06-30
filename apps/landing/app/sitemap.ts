@@ -12,18 +12,7 @@ import {
 import { getActiveLangs, getSiteBySubdomain } from "@nestino/villa-site/lib/tenant";
 
 function publicPaths(): string[] {
-  const core = ["/", "/privacy", "/terms", "/bowora", "/affiliate"];
-  const out: string[] = [];
-  for (const p of core) {
-    if (p === "/") {
-      out.push("/");
-      out.push("/fa");
-    } else {
-      out.push(p);
-      out.push(`/fa${p}`);
-    }
-  }
-  return out;
+  return ["/", "/privacy", "/terms", "/bowora", "/affiliate"];
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -37,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ? "yearly"
       : "weekly",
     priority:
-      path === "/" || path === "/fa"
+      path === "/"
         ? 1
         : path.includes("privacy") || path.includes("terms")
           ? 0.3
@@ -53,12 +42,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const demoRoutes: MetadataRoute.Sitemap = subdomains.flatMap((sub) => [
       {
         url: `${base}/demo/${sub}`,
-        lastModified,
-        changeFrequency: "weekly" as const,
-        priority: 0.6,
-      },
-      {
-        url: `${base}/fa/demo/${sub}`,
         lastModified,
         changeFrequency: "weekly" as const,
         priority: 0.6,

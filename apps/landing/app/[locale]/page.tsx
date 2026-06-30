@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getSiteUrl } from "@/lib/constants";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { isPublicLocale, type Locale, type PublicLocale } from "@/lib/i18n/config";
 import { localizedPath } from "@/lib/i18n/paths";
 
 type PageProps = {
@@ -420,20 +420,19 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { locale: raw } = await params;
-  if (!isLocale(raw)) return {};
+  if (!isPublicLocale(raw)) return {};
   const siteUrl = getSiteUrl();
-  const locale = raw as Locale;
+  const locale = raw as PublicLocale;
   const copy = homeCopy[locale];
   const canonicalPath = localizedPath(locale, "/");
   const enPath = localizedPath("en", "/");
-  const faPath = localizedPath("fa", "/");
 
   return {
     title: copy.metaTitle,
     description: copy.metaDescription,
     openGraph: {
       type: "website",
-      locale: locale === "fa" ? "fa_IR" : "en_US",
+      locale: "en_US",
       url: `${siteUrl}${canonicalPath}`,
       siteName: "Nestino",
       title: copy.metaTitle,
@@ -457,7 +456,6 @@ export async function generateMetadata({
       canonical: canonicalPath,
       languages: {
         en: `${siteUrl}${enPath}`,
-        fa: `${siteUrl}${faPath}`,
         "x-default": `${siteUrl}${enPath}`,
       },
     },
@@ -466,12 +464,12 @@ export async function generateMetadata({
 
 export default async function HomePage({ params }: PageProps) {
   const { locale: raw } = await params;
-  if (!isLocale(raw)) {
+  if (!isPublicLocale(raw)) {
     notFound();
   }
 
   const siteUrl = getSiteUrl();
-  const copy = homeCopy[raw];
+  const copy = homeCopy[raw as PublicLocale];
 
   const websiteJsonLd = {
     "@context": "https://schema.org",

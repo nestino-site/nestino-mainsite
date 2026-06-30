@@ -10,7 +10,7 @@ import { HowItWorksSection } from "@/components/sections/how-it-works";
 import { EngineVisualSection } from "@/components/sections/engine-visual";
 import { ProblemSection } from "@/components/sections/problem";
 import { getSiteUrl } from "@/lib/constants";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { isPublicLocale, type PublicLocale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/get-messages";
 import { localizedPath } from "@/lib/i18n/paths";
 
@@ -22,13 +22,12 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { locale: raw } = await params;
-  if (!isLocale(raw)) return {};
+  if (!isPublicLocale(raw)) return {};
   const messages = getMessages(raw);
   const siteUrl = getSiteUrl();
-  const locale = raw as Locale;
+  const locale = raw as PublicLocale;
   const canonicalPath = localizedPath(locale, "/bowora");
   const enPath = localizedPath("en", "/bowora");
-  const faPath = localizedPath("fa", "/bowora");
 
   return {
     title: messages.bowora.meta.title,
@@ -59,7 +58,6 @@ export async function generateMetadata({
       canonical: canonicalPath,
       languages: {
         en: `${siteUrl}${enPath}`,
-        fa: `${siteUrl}${faPath}`,
         "x-default": `${siteUrl}${enPath}`,
       },
     },
@@ -68,11 +66,11 @@ export async function generateMetadata({
 
 export default async function BoworaPage({ params }: PageProps) {
   const { locale: raw } = await params;
-  if (!isLocale(raw)) {
+  if (!isPublicLocale(raw)) {
     notFound();
   }
 
-  const locale = raw as Locale;
+  const locale = raw as PublicLocale;
   const messages = getMessages(locale);
   const siteUrl = getSiteUrl();
 

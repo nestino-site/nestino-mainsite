@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { LocaleProvider } from "@/components/i18n/locale-provider";
 import { getSiteUrl } from "@/lib/constants";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { isPublicLocale, type PublicLocale } from "@/lib/i18n/config";
 import { getMessages } from "@/lib/i18n/get-messages";
 
 type LayoutProps = {
@@ -12,13 +12,13 @@ type LayoutProps = {
   params: Promise<{ locale: string }>;
 };
 
-export function generateStaticParams(): { locale: Locale }[] {
-  return [{ locale: "en" }, { locale: "fa" }];
+export function generateStaticParams(): { locale: PublicLocale }[] {
+  return [{ locale: "en" }];
 }
 
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { locale: raw } = await params;
-  if (!isLocale(raw)) {
+  if (!isPublicLocale(raw)) {
     notFound();
   }
   const locale = raw;

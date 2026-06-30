@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { DemoPreview } from "@/components/demo/demo-preview";
 import { getMessages } from "@/lib/i18n/get-messages";
 import { localizedPath } from "@/lib/i18n/paths";
-import { isLocale } from "@/lib/i18n/config";
+import { isPublicLocale } from "@/lib/i18n/config";
 import { getDemoSiteBySubdomain } from "@/lib/demo-queries";
 
 type PageProps = {
@@ -14,7 +14,7 @@ type PageProps = {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug, locale: raw } = await params;
-  if (!isLocale(raw)) return { title: "Demo" };
+  if (!isPublicLocale(raw)) return { title: "Demo" };
   return {
     title: `Demo preview — ${slug}`,
     robots: { index: false, follow: true },
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function DemoPage({ params }: PageProps) {
   const { slug, locale: raw } = await params;
-  if (!isLocale(raw)) {
+  if (!isPublicLocale(raw)) {
     notFound();
   }
   const normalized = slug.trim().toLowerCase();
