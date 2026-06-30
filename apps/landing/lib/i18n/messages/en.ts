@@ -16,7 +16,7 @@ export const enMessages = {
   languageSwitcher: {
     label: "Language",
     english: "English",
-    turkish: "Türkçe",
+    persian: "فارسی",
     currentAria: "Current language: {lang}",
   },
   nav: {

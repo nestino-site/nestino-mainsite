@@ -15,7 +15,7 @@ export function localizedPath(locale: Locale, path: string): string {
   return `/${locale}${suffix}`;
 }
 
-/** Strip leading /en is not used; strip /tr etc. to get the path segment for switching. */
+/** Strip leading /en is not used; strip /fa etc. to get the path segment for switching. */
 export function pathWithoutLocale(pathname: string): string {
   for (const loc of locales) {
     if (loc === defaultLocale) continue;

@@ -18,12 +18,12 @@ export function localizedHomeHref(locale: Locale, queryAndHash: string): string 
   return `${base}${piece}`;
 }
 
-const ORDER: Locale[] = ["en", "tr"];
+const ORDER: Locale[] = ["en", "fa"];
 
 /** Regional flag shown next to each locale label (emoji, no extra assets). */
 const LOCALE_FLAG: Record<Locale, string> = {
   en: "🇬🇧",
-  tr: "🇹🇷",
+  fa: "🇮🇷",
 };
 
 export function LanguageSwitcher() {
@@ -40,7 +40,7 @@ export function LanguageSwitcher() {
       {ORDER.map((code) => {
         const active = code === locale;
         const href = switchLocalePath(pathname, code);
-        const label = code === "en" ? ls.english : ls.turkish;
+        const label = code === "en" ? ls.english : ls.persian;
         return (
           <a
             key={code}
@@ -58,7 +58,7 @@ export function LanguageSwitcher() {
               active
                 ? ls.currentAria.replace(
                     "{lang}",
-                    code === defaultLocale ? ls.english : ls.turkish,
+                    code === defaultLocale ? ls.english : ls.persian,
                   )
                 : `${ls.label}: ${label}`
             }
@@ -67,7 +67,7 @@ export function LanguageSwitcher() {
               <span className="text-[1.05rem] leading-none sm:text-lg" aria-hidden>
                 {LOCALE_FLAG[code]}
               </span>
-              <span>{code === "en" ? "EN" : "TR"}</span>
+              <span>{code === "en" ? "EN" : "FA"}</span>
             </span>
           </a>
         );

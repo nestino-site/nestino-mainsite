@@ -1,10 +1,15 @@
+"use client";
+
 import Link from "next/link";
 
+import { useLocaleContext } from "@/components/i18n/locale-provider";
 import { getSiteUrl } from "@/lib/constants";
 
 export function Footer() {
   const year = new Date().getFullYear();
   const site = getSiteUrl();
+  const { locale } = useLocaleContext();
+  const isPersian = locale === "fa";
 
   return (
     <footer className="border-t border-[#E8E2D7] bg-[#262626] text-white">
@@ -13,8 +18,9 @@ export function Footer() {
           <div>
             <p className="text-lg font-bold tracking-[-0.03em] text-white">Nestino</p>
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-white/62">
-              Hospitality OS for independent luxury properties. Property operations,
-              guest identity, direct demand, and Curina lifestyle partnerships.
+              {isPersian
+                ? "سیستم عامل مهمان‌نوازی برای اقامتگاه‌های لوکس مستقل؛ عملیات ملک، هویت مهمان، تقاضای مستقیم و شبکه Curina."
+                : "Hospitality OS for independent luxury properties. Property operations, guest identity, direct demand, and Curina lifestyle partnerships."}
             </p>
             <p className="mt-4 text-sm text-white/62">
               <a
@@ -27,15 +33,17 @@ export function Footer() {
           </div>
           <div className="flex gap-8 text-sm">
             <div className="flex flex-col gap-2">
-              <span className="font-semibold text-white">Company</span>
+              <span className="font-semibold text-white">
+                {isPersian ? "شرکت" : "Company"}
+              </span>
               <Link href="/Curina" className="text-white/62 hover:text-white">
                 Curina
               </Link>
               <Link href="/privacy" className="text-white/62 hover:text-white">
-                Privacy
+                {isPersian ? "حریم خصوصی" : "Privacy"}
               </Link>
               <Link href="/terms" className="text-white/62 hover:text-white">
-                Terms
+                {isPersian ? "شرایط استفاده" : "Terms"}
               </Link>
             </div>
           </div>

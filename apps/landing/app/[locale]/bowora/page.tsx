@@ -28,7 +28,7 @@ export async function generateMetadata({
   const locale = raw as Locale;
   const canonicalPath = localizedPath(locale, "/bowora");
   const enPath = localizedPath("en", "/bowora");
-  const trPath = localizedPath("tr", "/bowora");
+  const faPath = localizedPath("fa", "/bowora");
 
   return {
     title: messages.bowora.meta.title,
@@ -59,7 +59,7 @@ export async function generateMetadata({
       canonical: canonicalPath,
       languages: {
         en: `${siteUrl}${enPath}`,
-        tr: `${siteUrl}${trPath}`,
+        fa: `${siteUrl}${faPath}`,
         "x-default": `${siteUrl}${enPath}`,
       },
     },

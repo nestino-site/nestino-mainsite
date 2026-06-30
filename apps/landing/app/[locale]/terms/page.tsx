@@ -25,7 +25,7 @@ export async function generateMetadata({
       canonical: path,
       languages: {
         en: `${siteUrl}${localizedPath("en", "/terms")}`,
-        tr: `${siteUrl}${localizedPath("tr", "/terms")}`,
+        fa: `${siteUrl}${localizedPath("fa", "/terms")}`,
         "x-default": `${siteUrl}${localizedPath("en", "/terms")}`,
       },
     },

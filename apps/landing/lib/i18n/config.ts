@@ -1,4 +1,4 @@
-export const locales = ["en", "tr"] as const;
+export const locales = ["en", "fa"] as const;
 
 export type Locale = (typeof locales)[number];
 
@@ -9,5 +9,5 @@ export function isLocale(value: string): value is Locale {
 }
 
 export function htmlLang(locale: Locale): string {
-  return locale === "tr" ? "tr" : "en";
+  return locale === "fa" ? "fa-IR" : "en";
 }

@@ -13,7 +13,7 @@ type LayoutProps = {
 };
 
 export function generateStaticParams(): { locale: Locale }[] {
-  return [{ locale: "en" }, { locale: "tr" }];
+  return [{ locale: "en" }, { locale: "fa" }];
 }
 
 export default async function LocaleLayout({ children, params }: LayoutProps) {

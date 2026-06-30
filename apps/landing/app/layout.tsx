@@ -138,13 +138,13 @@ export default async function RootLayout({
   const raw = h.get("x-nestino-locale");
   const locale: Locale = raw && isLocale(raw) ? raw : "en";
   const lang = htmlLang(locale);
-  const htmlClass =
-    locale === "tr"
-      ? `${interMarketing.variable} ${fraunces.variable} font-sans is-locale-tr`
-      : `${interMarketing.variable} ${fraunces.variable} font-sans`;
+  const isPersian = locale === "fa";
+  const htmlClass = isPersian
+    ? `${interMarketing.variable} ${notoSansArabic.variable} ${notoNaskhArabic.variable} ${fraunces.variable} font-sans is-locale-fa`
+    : `${interMarketing.variable} ${fraunces.variable} font-sans`;
 
   return (
-    <html lang={lang} className={htmlClass}>
+    <html lang={lang} dir={isPersian ? "rtl" : "ltr"} className={htmlClass}>
       <body className="min-h-screen flex flex-col bg-[#F8F6F1] text-[#262626] antialiased">
         <PostHogProvider>
           {children}

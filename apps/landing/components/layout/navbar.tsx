@@ -7,14 +7,24 @@ import { LanguageSwitcher } from "@/components/i18n/language-switcher";
 import { useLocaleContext } from "@/components/i18n/locale-provider";
 import { localizedPath } from "@/lib/i18n/paths";
 
-const sectionLinks = [
-  { id: "problem", label: "Problem" },
-  { id: "how-it-works", label: "How it works" },
-  { id: "property-os", label: "Property OS" },
-  { id: "guest-identity", label: "Guest Identity" },
-  { id: "curina", label: "Curina" },
-  { id: "engine", label: "Demand Engine" },
-] as const;
+const sectionLinksByLocale = {
+  en: [
+    { id: "problem", label: "Problem" },
+    { id: "how-it-works", label: "How it works" },
+    { id: "property-os", label: "Property OS" },
+    { id: "guest-identity", label: "Guest Identity" },
+    { id: "curina", label: "Curina" },
+    { id: "engine", label: "Demand Engine" },
+  ],
+  fa: [
+    { id: "problem", label: "مسئله" },
+    { id: "how-it-works", label: "روش کار" },
+    { id: "property-os", label: "Property OS" },
+    { id: "guest-identity", label: "هویت مهمان" },
+    { id: "curina", label: "Curina" },
+    { id: "engine", label: "موتور تقاضا" },
+  ],
+} as const;
 
 function scrollToSection(id: string) {
   const reduceMotion = window.matchMedia(
@@ -28,6 +38,7 @@ function scrollToSection(id: string) {
 export function Navbar() {
   const { locale } = useLocaleContext();
   const [isElevated, setIsElevated] = useState(false);
+  const sectionLinks = sectionLinksByLocale[locale];
 
   useEffect(() => {
     const onScroll = () => {
@@ -98,7 +109,7 @@ export function Navbar() {
             }}
             className="hidden rounded-full bg-[#262626] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#4B5B4E] sm:inline-flex"
           >
-            Early partner
+            {locale === "fa" ? "همکار اولیه" : "Early partner"}
           </a>
         </div>
       </div>

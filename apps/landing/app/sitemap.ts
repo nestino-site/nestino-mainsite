@@ -17,10 +17,10 @@ function publicPaths(): string[] {
   for (const p of core) {
     if (p === "/") {
       out.push("/");
-      out.push("/tr");
+      out.push("/fa");
     } else {
       out.push(p);
-      out.push(`/tr${p}`);
+      out.push(`/fa${p}`);
     }
   }
   return out;
@@ -37,7 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ? "yearly"
       : "weekly",
     priority:
-      path === "/" || path === "/tr"
+      path === "/" || path === "/fa"
         ? 1
         : path.includes("privacy") || path.includes("terms")
           ? 0.3
@@ -58,7 +58,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.6,
       },
       {
-        url: `${base}/tr/demo/${sub}`,
+        url: `${base}/fa/demo/${sub}`,
         lastModified,
         changeFrequency: "weekly" as const,
         priority: 0.6,

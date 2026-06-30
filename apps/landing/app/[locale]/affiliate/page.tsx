@@ -24,7 +24,7 @@ export async function generateMetadata({
   const locale = raw as Locale;
   const canonicalPath = localizedPath(locale, "/affiliate");
   const enPath = localizedPath("en", "/affiliate");
-  const trPath = localizedPath("tr", "/affiliate");
+  const faPath = localizedPath("fa", "/affiliate");
 
   return {
     title: messages.affiliate.meta.title,
@@ -55,7 +55,7 @@ export async function generateMetadata({
       canonical: canonicalPath,
       languages: {
         en: `${siteUrl}${enPath}`,
-        tr: `${siteUrl}${trPath}`,
+        fa: `${siteUrl}${faPath}`,
         "x-default": `${siteUrl}${enPath}`,
       },
     },
