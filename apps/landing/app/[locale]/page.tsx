@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { FullscreenImage } from "@/components/ui/fullscreen-image";
+import { NestinoOsMap } from "@/components/sections/nestino-os-map";
 import { getSiteUrl } from "@/lib/constants";
 import { isPublicLocale, type Locale, type PublicLocale } from "@/lib/i18n/config";
 import { localizedPath } from "@/lib/i18n/paths";
@@ -109,10 +110,10 @@ const homeCopy: Record<Locale, HomeCopy> = {
     primaryCta: "Become an early partner",
     secondaryCta: "See how it works",
     services: {
-      eyebrow: "Nestino services map",
-      title: "Three connected systems, designed to complete each other.",
+      eyebrow: "Nestino OS",
+      title: "Operations, demand, and guest intelligence in one stack.",
       text:
-        "Think of Nestino as a hospitality constellation: operations, direct demand, and guest intelligence orbit the same property and keep feeding each other.",
+        "Three product layers share the same property record, guest memory, and partner signals — each one makes the others stronger.",
       centerLabel: "Nestino OS",
       centerText: "One operating layer for property work, direct channels, guest memory, and partner data.",
       groups: [
@@ -544,14 +545,14 @@ export default async function HomePage({ params }: PageProps) {
         </div>
       </section>
 
-      <section id="services-map" className="bg-white px-4 py-20 sm:px-6">
+      <section id="services-map" className="bg-[#EFE8DB]/45 px-4 py-20 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
             eyebrow={copy.services.eyebrow}
             title={copy.services.title}
             text={copy.services.text}
           />
-          <ServicesConstellation services={copy.services} />
+          <NestinoOsMap services={copy.services} />
         </div>
       </section>
 
@@ -743,78 +744,6 @@ function ProductPreview({
         className="h-auto rounded-[24px] border border-[#E8E2D7]"
       />
     </figure>
-  );
-}
-
-function ServicesConstellation({
-  services,
-}: {
-  services: HomeCopy["services"];
-}) {
-  return (
-    <div className="rounded-[42px] border border-[#E8E2D7] bg-[#F8F6F1] p-4 shadow-[0_24px_80px_rgba(38,38,38,0.08)] sm:p-6">
-      <div className="relative overflow-hidden rounded-[34px] border border-[#E8E2D7] bg-white p-5 sm:p-8">
-        <div className="absolute inset-x-8 top-1/2 h-32 -translate-y-1/2 rounded-full bg-[#C8A96A]/15 blur-3xl" />
-        <div className="relative grid items-center gap-5 lg:grid-cols-[1fr_0.74fr_1fr]">
-          <ServicePillar group={services.groups[0]} tone="olive" />
-
-          <div className="order-first grid place-items-center lg:order-none">
-            <div className="relative grid h-56 w-56 place-items-center rounded-full border border-[#C8A96A]/45 bg-[#F8F6F1] text-center shadow-[0_20px_70px_rgba(200,169,106,0.22)]">
-              <div className="absolute -inset-4 rounded-full border border-dashed border-[#C8A96A]/35" />
-              <div className="absolute -inset-10 rounded-full border border-[#E8E2D7]" />
-              <div className="px-6">
-                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#C8A96A]">{services.centerLabel}</p>
-                <p className="mt-4 text-sm leading-6 text-[#5f5f5f]">{services.centerText}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid gap-5">
-            <ServicePillar group={services.groups[1]} tone="gold" />
-            <ServicePillar group={services.groups[2]} tone="charcoal" />
-          </div>
-        </div>
-
-        <div className="relative mt-6 grid gap-3 md:grid-cols-4">
-          {services.flows.map(([title, text]) => (
-            <article key={title} className="rounded-3xl border border-[#E8E2D7] bg-[#F8F6F1]/80 p-5">
-              <h3 className="text-sm font-semibold text-[#262626]">{title}</h3>
-              <p className="mt-2 text-xs leading-5 text-[#787878]">{text}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ServicePillar({
-  group,
-  tone,
-}: {
-  group: HomeCopy["services"]["groups"][number];
-  tone: "olive" | "gold" | "charcoal";
-}) {
-  const toneClass = {
-    olive: "from-[#4B5B4E] to-[#7A8A73]",
-    gold: "from-[#C8A96A] to-[#E8D49E]",
-    charcoal: "from-[#262626] to-[#5f5f5f]",
-  }[tone];
-
-  return (
-    <article className="rounded-[30px] border border-[#E8E2D7] bg-white p-5 shadow-[0_16px_48px_rgba(38,38,38,0.05)]">
-      <div className={`h-1.5 rounded-full bg-gradient-to-r ${toneClass}`} />
-      <p className="mt-5 text-xs font-bold uppercase tracking-[0.18em] text-[#4B5B4E]">{group.kicker}</p>
-      <h3 className="mt-2 text-2xl font-semibold tracking-[-0.035em] text-[#262626]">{group.title}</h3>
-      <p className="mt-3 text-sm leading-6 text-[#787878]">{group.text}</p>
-      <div className="mt-5 flex flex-wrap gap-2">
-        {group.items.map((item) => (
-          <span key={item} className="rounded-full border border-[#E8E2D7] bg-[#F8F6F1] px-3 py-1.5 text-xs font-medium text-[#5f5f5f]">
-            {item}
-          </span>
-        ))}
-      </div>
-    </article>
   );
 }
 
