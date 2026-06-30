@@ -71,7 +71,11 @@ type HomeCopy = {
     eyebrow: string;
     title: string;
     text: string;
-    items: Array<[string, string]>;
+    profileLayers: Array<[string, string]>;
+    triggers: Array<[string, string, string]>;
+    partners: string[];
+    triggerEyebrow: string;
+    triggerText: string;
     loop: Array<[string, string]>;
     imageAlt: string;
     imageCaption: string;
@@ -218,23 +222,41 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     curina: {
       eyebrow: "Curina",
-      title: "Curina turns nearby lifestyle partners into part of the stay.",
+      title: "One profile at the center. A connected city around it.",
       text:
-        "Curina is the network layer around Nestino: curated restaurants, cafes, gyms, wellness spaces, galleries, coworking, retail, and local experiences that can receive demand from hotels and return richer guest signals.",
-      items: [
-        ["For guests", "A more useful city experience: places, benefits, recommendations, and experiences matched to the profile."],
-        ["For properties", "A better way to extend hospitality beyond the room while learning what guests value outside the hotel."],
-        ["For partners", "A premium demand channel connected to high-intent hotel guests, not a generic coupon marketplace."],
-        ["For Nestino", "Every interaction can strengthen recommendations, lifecycle marketing, and direct relationship quality."],
+        "Curina keeps a consent-aware guest profile in the middle — preferences, stay history, and service notes — and connects hotels, dining, wellness, culture, and events into one lifestyle network.",
+      profileLayers: [
+        ["Preferences", "Room ambience, dining style, wellness interests, and lifestyle tags remembered across stays."],
+        ["Stay & service context", "Arrival notes, repeat-guest memory, and operational prompts the team can act on immediately."],
+        ["Offer recommendations", "Thoughtful partner offers surfaced from the profile, not generic broadcast marketing."],
       ],
+      triggers: [
+        ["Wellness interest + short city stay", "Profile signal", "Recommend a wellness reset package at a partner spa"],
+        ["Seasonal dining preference + evening free", "Timing signal", "Suggest a chef's table or plant-forward restaurant experience"],
+        ["Art & design tags + weekend stay", "Interest signal", "Offer a gallery visit or cultural venue invite"],
+        ["Repeat guest + direct booking intent", "Return signal", "Prompt a return-stay offer before the checkout window closes"],
+      ],
+      partners: [
+        "Boutique hotel",
+        "Restaurant",
+        "Cafe",
+        "Gym",
+        "Spa",
+        "Gallery",
+        "Coworking",
+        "Event venue",
+      ],
+      triggerEyebrow: "Trigger-based recommendations",
+      triggerText:
+        "Nestino recommends the next action only when the guest profile and moment align — not as generic marketing noise.",
       loop: [
-        ["01", "Guest checks in"],
-        ["02", "Profile becomes active"],
-        ["03", "Curina recommends the right places"],
-        ["04", "Activity enriches future stays"],
+        ["01", "Profile reads the signal"],
+        ["02", "Trigger matches the moment"],
+        ["03", "Curina recommends the action"],
+        ["04", "Outcome feeds the next stay"],
       ],
-      imageAlt: "Curina lifestyle network connected to a central Nestino guest profile",
-      imageCaption: "Product illustration: guest profile connected with hotel, dining, wellness, work, culture, and events",
+      imageAlt: "Nestino guest profile connected to Curina lifestyle partners and offer recommendations",
+      imageCaption: "Guest profile, partner network, and triggered offer recommendations",
     },
     engine: {
       eyebrow: "Demand engine",
@@ -378,23 +400,41 @@ const homeCopy: Record<Locale, HomeCopy> = {
     },
     curina: {
       eyebrow: "Curina",
-      title: "Curina شریک‌های سبک زندگی نزدیک اقامت را به بخشی از تجربه تبدیل می‌کند.",
+      title: "یک پروفایل در مرکز. یک شهر متصل اطراف آن.",
       text:
-        "Curina لایه شبکه‌ای اطراف نستینو است: رستوران‌ها، کافه‌ها، باشگاه‌ها، فضاهای wellness، گالری‌ها، فضای کار، خرده‌فروشی و تجربه‌های محلی که می‌توانند از هتل‌ها تقاضا بگیرند و سیگنال‌های دقیق‌تری از مهمان برگردانند.",
-      items: [
-        ["برای مهمان", "تجربه شهری مفیدتر: مکان‌ها، مزایا، پیشنهادها و تجربه‌هایی که با پروفایل هماهنگ‌اند."],
-        ["برای اقامتگاه", "راهی بهتر برای گسترش مهمان‌نوازی بیرون از اتاق و فهمیدن اینکه مهمان واقعاً چه چیزی را ارزشمند می‌داند."],
-        ["برای شریک‌ها", "کانال تقاضای پریمیوم متصل به مهمانان هتل، نه یک بازار تخفیف عمومی."],
-        ["برای نستینو", "هر تعامل می‌تواند پیشنهادها، بازاریابی چرخه عمر و کیفیت رابطه مستقیم را بهتر کند."],
+        "Curina یک پروفایل آگاه از رضایت مهمان را در مرکز نگه می‌دارد — ترجیحات، تاریخچه اقامت و یادداشت‌های سرویس — و هتل، غذا، wellness، فرهنگ و رویداد را در یک شبکه سبک زندگی وصل می‌کند.",
+      profileLayers: [
+        ["ترجیحات", "فضای اتاق، سبک غذا، علاقه wellness و تگ‌های سبک زندگی در اقامت‌های مختلف حفظ می‌شوند."],
+        ["زمینه اقامت و سرویس", "نکات ورود، حافظه مهمان تکراری و promptهای عملیاتی که تیم می‌تواند فوراً روی آن‌ها act کند."],
+        ["پیشنهادهای offer", "پیشنهادهای شریک مرتبط از روی پروفایل، نه بازاریابی عمومی و سرد."],
       ],
+      triggers: [
+        ["علاقه wellness + اقامت کوتاه شهری", "سیگنال پروفایل", "پیشنهاد wellness reset در spa شریک"],
+        ["ترجیح غذای فصلی + عصر آزاد", "سیگنال زمان", "پیشنهاد chef's table یا تجربه رستورانی plant-forward"],
+        ["تگ art & design + اقامت آخر هفته", "سیگنال علاقه", "دعوت به گالری یا venue فرهنگی"],
+        ["مهمان تکراری + قصد رزرو مستقیم", "سیگنال بازگشت", "پیشنهاد return-stay قبل از پایان پنجره checkout"],
+      ],
+      partners: [
+        "Boutique hotel",
+        "Restaurant",
+        "Cafe",
+        "Gym",
+        "Spa",
+        "Gallery",
+        "Coworking",
+        "Event venue",
+      ],
+      triggerEyebrow: "پیشنهاد بر اساس trigger",
+      triggerText:
+        "نستینو فقط وقتی action بعدی را پیشنهاد می‌دهد که پروفایل مهمان و لحظه واقعی هم‌راستا باشند — نه به‌صورت بازاریابی عمومی.",
       loop: [
-        ["۰۱", "مهمان وارد می‌شود"],
-        ["۰۲", "پروفایل فعال می‌شود"],
-        ["۰۳", "Curina مکان‌های مناسب را پیشنهاد می‌دهد"],
-        ["۰۴", "فعالیت‌ها اقامت‌های بعدی را غنی‌تر می‌کنند"],
+        ["۰۱", "پروفایل سیگنال را می‌خواند"],
+        ["۰۲", "trigger لحظه را match می‌کند"],
+        ["۰۳", "Curina action را recommend می‌کند"],
+        ["۰۴", "نتیجه اقامت بعدی را غنی‌تر می‌کند"],
       ],
-      imageAlt: "شبکه سبک زندگی Curina متصل به پروفایل مهمان نستینو",
-      imageCaption: "تصویر محصول: پروفایل مهمان متصل به هتل، غذا، wellness، کار، فرهنگ و رویداد",
+      imageAlt: "پروفایل مهمان نستینو متصل به شریک‌های Curina و پیشنهادهای offer",
+      imageCaption: "پروفایل مهمان، شبکه شریک‌ها و پیشنهادهای trigger-based",
     },
     engine: {
       eyebrow: "موتور تقاضا",
@@ -629,17 +669,47 @@ export default async function HomePage({ params }: PageProps) {
 
       <section id="curina" className="bg-[#F8F6F1] px-4 py-20 sm:px-6">
         <div className="mx-auto max-w-6xl">
-          <div className="grid items-end gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-            <SectionHeader
-              eyebrow={copy.curina.eyebrow}
-              title={copy.curina.title}
-              text={copy.curina.text}
-            />
-            <CurinaLoop items={copy.curina.loop} />
+          <SectionHeader
+            eyebrow={copy.curina.eyebrow}
+            title={copy.curina.title}
+            text={copy.curina.text}
+          />
+
+          <EcosystemImage alt={copy.curina.imageAlt} caption={copy.curina.imageCaption} />
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-3">
+            {copy.curina.profileLayers.map(([title, text]) => (
+              <article key={title} className="rounded-[28px] border border-[#E8E2D7] bg-white p-6">
+                <h3 className="text-lg font-semibold tracking-[-0.02em] text-[#262626]">{title}</h3>
+                <p className="mt-3 text-sm leading-6 text-[#787878]">{text}</p>
+              </article>
+            ))}
           </div>
-          <div className="mt-2 grid items-start gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-            <EcosystemImage alt={copy.curina.imageAlt} caption={copy.curina.imageCaption} />
-            <StoryCardGrid items={copy.curina.items} />
+
+          <div className="mt-8 rounded-[32px] border border-[#E8E2D7] bg-white p-6 sm:p-8">
+            <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4B5B4E]">
+                  {copy.curina.triggerEyebrow}
+                </p>
+                <p className="mt-2 max-w-2xl text-sm leading-6 text-[#787878]">
+                  {copy.curina.triggerText}
+                </p>
+              </div>
+              <CurinaLoop items={copy.curina.loop} />
+            </div>
+            <CurinaTriggerList triggers={copy.curina.triggers} />
+          </div>
+
+          <div className="mt-6 flex flex-wrap gap-2">
+            {copy.curina.partners.map((partner) => (
+              <span
+                key={partner}
+                className="rounded-full border border-[#E8E2D7] bg-white px-4 py-2 text-sm text-[#4B5B4E]"
+              >
+                {partner}
+              </span>
+            ))}
           </div>
         </div>
       </section>
@@ -794,12 +864,47 @@ function GuestProfileCard({
 
 function CurinaLoop({ items }: { items: Array<[string, string]> }) {
   return (
-    <div className="grid gap-3 sm:grid-cols-2">
+    <div className="flex flex-wrap gap-2">
       {items.map(([number, label]) => (
-        <div key={number} className="flex items-center gap-3 rounded-full border border-[#E8E2D7] bg-white px-4 py-3 shadow-[0_12px_36px_rgba(38,38,38,0.05)]">
-          <span className="font-mono text-xs text-[#C8A96A]">{number}</span>
-          <span className="text-sm font-semibold text-[#262626]">{label}</span>
+        <div key={number} className="flex items-center gap-2 rounded-full border border-[#E8E2D7] bg-[#F8F6F1] px-3 py-2">
+          <span className="font-mono text-[11px] text-[#C8A96A]">{number}</span>
+          <span className="text-xs font-semibold text-[#262626]">{label}</span>
         </div>
+      ))}
+    </div>
+  );
+}
+
+function CurinaTriggerList({
+  triggers,
+}: {
+  triggers: Array<[string, string, string]>;
+}) {
+  return (
+    <div className="grid gap-3">
+      {triggers.map(([condition, signal, action]) => (
+        <article
+          key={condition}
+          className="grid gap-3 rounded-[24px] border border-[#E8E2D7] bg-[#F8F6F1]/70 p-4 lg:grid-cols-[1.1fr_0.34fr_1.1fr] lg:items-center"
+        >
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#4B5B4E]">Trigger</p>
+            <p className="mt-1 text-sm font-semibold text-[#262626]">{condition}</p>
+          </div>
+          <div className="hidden text-center text-[#C8A96A] lg:block" aria-hidden>
+            →
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#4B5B4E]">Signal</p>
+              <p className="mt-1 text-sm text-[#5f5f5f]">{signal}</p>
+            </div>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#4B5B4E]">Recommended action</p>
+              <p className="mt-1 text-sm text-[#5f5f5f]">{action}</p>
+            </div>
+          </div>
+        </article>
       ))}
     </div>
   );
