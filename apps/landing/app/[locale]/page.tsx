@@ -230,11 +230,16 @@ const homeCopy: Record<Locale, HomeCopy> = {
         ["Stay & service context", "Arrival notes, repeat-guest memory, and operational prompts the team can act on immediately."],
         ["Offer recommendations", "Thoughtful partner offers surfaced from the profile, not generic broadcast marketing."],
       ],
+      triggerEyebrow: "Trigger-based recommendations",
+      triggerText:
+        "Nestino watches the signals hotels care about — time since the last stay, recorded preferences, in-stay behavior, and booking patterns — then recommends the next hotel action.",
       triggers: [
-        ["Wellness interest + short city stay", "Profile signal", "Recommend a wellness reset package at a partner spa"],
-        ["Seasonal dining preference + evening free", "Timing signal", "Suggest a chef's table or plant-forward restaurant experience"],
-        ["Art & design tags + weekend stay", "Interest signal", "Offer a gallery visit or cultural venue invite"],
-        ["Repeat guest + direct booking intent", "Return signal", "Prompt a return-stay offer before the checkout window closes"],
+        ["90+ days since last checkout", "Past stay on file", "Send a direct rebooking offer with the guest's preferred room type and rate context"],
+        ["Guest checks in again", "Previous service notes saved", "Prompt front desk to prepare late checkout, quiet floor, or welcome setup before arrival"],
+        ["Second night of stay", "Past in-house dining history", "Recommend hotel restaurant, room service, or partner dinner while the guest is still on property"],
+        ["Same season as last year's stay", "Repeat travel pattern", "Offer a return-stay package with remembered preferences already applied"],
+        ["48 hours before checkout", "Wellness interest from earlier stays", "Suggest in-house spa, extended checkout, or a partner wellness experience"],
+        ["Guest's usual dates become available", "Historical booking pattern", "Reach out with a direct hold before they search OTAs again"],
       ],
       partners: [
         "Boutique hotel",
@@ -246,9 +251,6 @@ const homeCopy: Record<Locale, HomeCopy> = {
         "Coworking",
         "Event venue",
       ],
-      triggerEyebrow: "Trigger-based recommendations",
-      triggerText:
-        "Nestino recommends the next action only when the guest profile and moment align — not as generic marketing noise.",
       loop: [
         ["01", "Profile reads the signal"],
         ["02", "Trigger matches the moment"],
@@ -408,11 +410,16 @@ const homeCopy: Record<Locale, HomeCopy> = {
         ["زمینه اقامت و سرویس", "نکات ورود، حافظه مهمان تکراری و promptهای عملیاتی که تیم می‌تواند فوراً روی آن‌ها act کند."],
         ["پیشنهادهای offer", "پیشنهادهای شریک مرتبط از روی پروفایل، نه بازاریابی عمومی و سرد."],
       ],
+      triggerEyebrow: "پیشنهاد بر اساس trigger",
+      triggerText:
+        "نستینو سیگنال‌هایی را که برای هتل مهم‌اند دنبال می‌کند — فاصله از آخرین اقامت، ترجیحات ثبت‌شده، رفتار داخل اقامت و الگوی رزرو — و action بعدی هتل را پیشنهاد می‌دهد.",
       triggers: [
-        ["علاقه wellness + اقامت کوتاه شهری", "سیگنال پروفایل", "پیشنهاد wellness reset در spa شریک"],
-        ["ترجیح غذای فصلی + عصر آزاد", "سیگنال زمان", "پیشنهاد chef's table یا تجربه رستورانی plant-forward"],
-        ["تگ art & design + اقامت آخر هفته", "سیگنال علاقه", "دعوت به گالری یا venue فرهنگی"],
-        ["مهمان تکراری + قصد رزرو مستقیم", "سیگنال بازگشت", "پیشنهاد return-stay قبل از پایان پنجره checkout"],
+        ["بیش از ۹۰ روز از checkout قبلی", "اقامت قبلی در پرونده", "ارسال offer رزرو مستقیم با نوع اتاق و زمینه نرخ ترجیحی مهمان"],
+        ["مهمان دوباره check-in می‌کند", "یادداشت‌های سرویس قبلی ذخیره شده", "یادآوری به front desk برای late checkout، طبقه آرام یا welcome setup قبل از ورود"],
+        ["شب دوم اقامت", "سابقه dining داخل هتل", "پیشنهاد رستوران هتل، room service یا شام شریک در حین حضور مهمان"],
+        ["همان فصل اقامت سال قبل", "الگوی سفر تکراری", "پیشنهاد return-stay package با ترجیحات قبلی از قبل اعمال‌شده"],
+        ["۴۸ ساعت قبل از checkout", "علاقه wellness از اقامت‌های قبل", "پیشنهاد spa داخل هتل، checkout دیرتر یا تجربه wellness شریک"],
+        ["تاریخ‌های معمول مهمان آزاد می‌شود", "الگوی رزرو تاریخی", "تماس مستقیم با hold روی تاریخ قبل از جستجوی OTA"],
       ],
       partners: [
         "Boutique hotel",
@@ -424,9 +431,6 @@ const homeCopy: Record<Locale, HomeCopy> = {
         "Coworking",
         "Event venue",
       ],
-      triggerEyebrow: "پیشنهاد بر اساس trigger",
-      triggerText:
-        "نستینو فقط وقتی action بعدی را پیشنهاد می‌دهد که پروفایل مهمان و لحظه واقعی هم‌راستا باشند — نه به‌صورت بازاریابی عمومی.",
       loop: [
         ["۰۱", "پروفایل سیگنال را می‌خواند"],
         ["۰۲", "trigger لحظه را match می‌کند"],
